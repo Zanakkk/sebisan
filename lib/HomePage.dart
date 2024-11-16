@@ -146,7 +146,7 @@ class _HomePageState extends State<HomePage> {
               children: <Widget>[
                 // Title
                 const Text(
-                  'Welcome to Safe Exam Browser SIBITI',
+                  'Welcome to Safe Exam Browser SIBITIa',
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
