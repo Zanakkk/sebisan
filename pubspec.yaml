@@ -39,6 +39,12 @@ dependencies:
   webview_flutter_android: ^3.16.8
   webview_flutter_wkwebview: ^3.14.0
   flutter_inappwebview: ^6.0.0
+  webview_all: ^0.4.5
+  webview_cef: ^0.2.1
+  webview_universal: ^0.0.5
+  window_manager: ^0.4.3
+  webview_windows: ^0.4.0
+  http: ^1.2.2
 
 dev_dependencies:
   flutter_test:

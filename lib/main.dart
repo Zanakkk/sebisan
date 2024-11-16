@@ -1,12 +1,16 @@
+import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
-import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'package:sebisan/safeexam.dart';
+import 'package:sebisan/web.dart';
+
+import 'HomePage.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -14,10 +18,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: SafeExamPage (),
+      home: Platform.isAndroid ? const HomePage() : const WindowsSafeExamPage(),
       debugShowCheckedModeBanner: false,
     );
   }
 }
-
-
