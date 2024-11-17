@@ -13,18 +13,19 @@ import androidx.annotation.NonNull
 class MainActivity : FlutterActivity() {
     private val CHANNEL = "com.example.sebisan/locktask"
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        // Menonaktifkan screenshot dan screen recording
-        window.setFlags(
-            WindowManager.LayoutParams.FLAG_SECURE,
-            WindowManager.LayoutParams.FLAG_SECURE
-        )
-
-        // Menggunakan wakelock untuk mencegah layar mati
-        keepScreenOn()
+    private fun lockScreenshot(enable: Boolean) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            if (enable) {
+                window.setFlags(
+                    WindowManager.LayoutParams.FLAG_SECURE,
+                    WindowManager.LayoutParams.FLAG_SECURE
+                )
+            } else {
+                window.clearFlags(WindowManager.LayoutParams.FLAG_SECURE)
+            }
+        }
     }
+
 
     private fun keepScreenOn() {
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
@@ -48,10 +49,12 @@ class MainActivity : FlutterActivity() {
             when (call.method) {
                 "startLockTask" -> {
                     startLockTaskMode()
+                    lockScreenshot(true)
                     result.success(null)
                 }
                 "stopLockTask" -> {
                     stopLockTaskMode()
+                    lockScreenshot(false)
                     result.success(null)
                 }
                 "closeFloatingApps" -> {
